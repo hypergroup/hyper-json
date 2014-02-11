@@ -72,6 +72,59 @@ The most basic hyper+json resource is an object which SHOULD contain an +href+:
 { }
 ----
 
+== Examples
+
+----
+{
+  "href": "http://example.org/users",
+  "data": [
+    {"href": "http://example.org/users/1"},
+    {"href": "http://example.org/users/2"},
+    {"href": "http://example.org/users/3"}
+  ]
+}
+----
+
+----
+{
+  "href": "http://example.org/users/1",
+  "name": "Cameron",
+  "favorites": {
+    "color": "red",
+    "food": ["bananas", "potatoes", "cheese"]
+  },
+  "update": {
+    "action": "http://example.org/users/1",
+    "method": "PUT",
+    "input": {
+      "name": {
+        "type": "text",
+        "required": true,
+        "value": "Cameron"
+      },
+      "color": {
+        "type": "select",
+        "options": [
+          {"value": "red"},
+          {"value": "blue"},
+          {"value": "green"}
+        ]
+      },
+      "color": {
+        "type": "select",
+        "multiple": true,
+        "options": [
+          {"value": "bananas"},
+          {"value": "potatoes"},
+          {"value": "cheese"},
+          {"value": "carrots"}
+        ]
+      }
+    }
+  }
+}
+----
+
 == Extensibility
 This document describes the hyper+json markup vocabulary. Any extensions to the standard vocabulary MUST not redefine any objects (or their properties), arrays, properties, link relations, or data types defined in this document. Clients that do not recognize extensions to the standard vocabulary SHOULD ignore them.
 
