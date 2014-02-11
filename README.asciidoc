@@ -1,0 +1,83 @@
+hyper+json
+==========
+:toc:
+:numbered:
+
+== Document Status
+Author::
+  Cameron Bytheway <cameron@hypergroup.io>
+  Tim Shadel
+
+Status::
+  *[white red-background]#Working Draft#*
+
+////
+  *[white blue-background]#Submitted to IANA#*
+  *[white green-background]#Approved by IANA#*
+////
+
+Last Updated::
+  {docdate}
+Proposed IANA Registrations::
+  +application/hyper+json+
+
+== General
+hyper+json is a JSON based hypermedia format designed for simplicty and flexibility.
+
+=== Design Goals
+hyper+json strives for simplicity:
+
+ * Simple to understand
+ * Simple to write
+ * Simple to consume
+ * Simple to extend
+
+It also tries to be as familiar as possible to JSON users.
+
+=== Compliance
+An implementation is not compliant if it fails to satisfy one or more of the MUST or REQUIRED elements. An implementation that satisfies all the MUST and REQUIRED elements as well as all the SHOULD and RECOMMENDED elements is said to be "unconditionally compliant"; one that satisfies all the MUST and REQUIRED elements but not all the SHOULD and RECOMMENDED elements is said to be "conditionally compliant."
+
+[NOTE]
+====
+The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in RFC 2119.
+====
+
+== Hypermedia Model
+
+
+=== root
+The most basic hyper+json resource is an object which SHOULD contain an +href+:
+
+----
+{
+  "href": "/"
+}
+----
+
+=== data
+
+----
+{ }
+----
+
+=== link
+
+----
+{ }
+----
+
+=== form
+
+----
+{ }
+----
+
+== Extensibility
+This document describes the hyper+json markup vocabulary. Any extensions to the standard vocabulary MUST not redefine any objects (or their properties), arrays, properties, link relations, or data types defined in this document. Clients that do not recognize extensions to the standard vocabulary SHOULD ignore them.
+
+The details of designing and implementing extensions is beyond the scope of this document.
+
+[NOTE]
+====
+It is possible that future forward-compatible modifications to this specification will include new objects, arrays, properties, link-relations, and data types. Extension designers should take care to prevent future modifications from breaking or redefining those extensions.
+====
