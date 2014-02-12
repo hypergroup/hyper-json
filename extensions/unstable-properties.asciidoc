@@ -1,0 +1,37 @@
+= Unstable Properties
+
+== Experimental
+
+Prefixing property names with a +?+ marks that property as experimental and may not work as intended or may be removed from future responses. Client should proceeed with caution when relying on these properties.
+
+----
+{
+  "href": "http://example.org/",
+  "?search": {
+    "action": "http://example.org",
+    "input": {
+      "text": {
+        "type": "text"
+      }
+    }
+  }
+}
+----
+
+== Beta
+
+Prefixing property names with a +!+ marks that property as beta and may not work as intended and is in testing. Clients can assume these properties will become stable in future response.
+
+----
+{
+  "href": "http://example.org/",
+  "!search": {
+    "action": "http://example.org",
+    "input": {
+      "text": {
+        "type": "text"
+      }
+    }
+  }
+}
+----
