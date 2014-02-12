@@ -54,7 +54,7 @@ The most basic hyper+json resource is an object which SHOULD contain an +href+:
 }
 ----
 
-=== data
+=== property
 
 ----
 { }
@@ -67,6 +67,12 @@ The most basic hyper+json resource is an object which SHOULD contain an +href+:
 ----
 
 === form
+
+----
+{ }
+----
+
+=== collection
 
 ----
 { }
