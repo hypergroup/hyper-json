@@ -110,7 +110,7 @@ The most basic hyper+json resource is an object which SHOULD contain an +href+:
           {"value": "green"}
         ]
       },
-      "color": {
+      "food": {
         "type": "select",
         "multiple": true,
         "options": [
