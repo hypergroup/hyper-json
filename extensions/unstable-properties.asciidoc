@@ -49,7 +49,7 @@ message::
 preferred::
   http://tools.ietf.org/html/rfc6901[JSON Pointer] to preferred property
 
-Clients should work to upgrade their implementations as soon as possible.
+Clients SHOULD work to upgrade their implementations as soon as possible. Servers SHOULD give sufficient time for clients to do so.
 
 ----
 {
