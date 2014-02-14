@@ -20,12 +20,54 @@ Prefixing property names with a +?+ marks that property as experimental and may 
 
 == Beta
 
-Prefixing property names with a +!+ marks that property as beta and may not work as intended and is in testing. Clients can assume these properties will become stable in future response.
+Prefixing property names with a +_+ marks that property as beta and may not work as intended and is in testing. Clients can assume these properties will become stable in future response.
 
 ----
 {
   "href": "http://example.org/",
+  "_search": {
+    "action": "http://example.org",
+    "input": {
+      "text": {
+        "type": "text"
+      }
+    }
+  }
+}
+----
+
+== Deprecated
+
+Prefixing property names with a +!+ marks that property as deprecated and will be removed in the future. The value will be "wrapped" in an object with some metadata about the deprecation. This metadata MAY include:
+
+expiration::
+  expiration date of the property, in http://en.wikipedia.org/wiki/ISO_8601[ISO 8601]
+
+message::
+  human readable message of reason for deprecation
+
+preferred::
+  http://tools.ietf.org/html/rfc6901[JSON Pointer] to preferred property
+
+Clients should work to upgrade their implementations as soon as possible.
+
+----
+{
+  "href": "http://exmple.org/",
   "!search": {
+    "message": "The search property will be renamed in favor of the find property",
+    "expiration": "2014-02-13T20:04:53+00:00",
+    "preferred": "find",
+    "value": {
+      "action": "http://example.org",
+      "input": {
+        "text": {
+          "type": "text"
+        }
+      }
+    }
+  },
+  "find": {
     "action": "http://example.org",
     "input": {
       "text": {
