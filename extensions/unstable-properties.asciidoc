@@ -47,7 +47,7 @@ message::
   human readable message of reason for deprecation
 
 preferred::
-  http://tools.ietf.org/html/rfc6901[JSON Pointer] to preferred property
+  http://tools.ietf.org/html/rfc6901[JSON Pointer] to preferred property, prefixed with a +#+. This MAY also include an absolute url i.e. http://example.com#/path/to/property
 
 Clients SHOULD work to upgrade their implementations as soon as possible. Servers SHOULD give sufficient time for clients to do so.
 
@@ -57,7 +57,7 @@ Clients SHOULD work to upgrade their implementations as soon as possible. Server
   "!search": {
     "message": "The search property will be renamed in favor of the find property",
     "expiration": "2014-02-13T20:04:53+00:00",
-    "preferred": "/find",
+    "preferred": "#/find",
     "value": {
       "action": "http://example.org",
       "input": {
