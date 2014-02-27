@@ -100,7 +100,7 @@ A hypermedia link is represented as an object with a +href+ property. It MAY hav
 }
 ----
 
-Servers MAY use http://tools.ietf.org/html/rfc6901[JSON Pointers] prefixed with a '\#'. If +href+ starts with '\#' the pointer references a local property:
+Servers MAY use http://tools.ietf.org/html/rfc6901[JSON Pointers] prefixed with a '\#'. If +href+ starts with '#' the pointer references a local property:
 
 [source,json]
 ----
@@ -239,6 +239,15 @@ Servers MAY choose to paginate collection. They SHOULD use the +next+ and +prev+
   "prev": {
     "href": "/users?page=1"
   }
+}
+----
+
+=== error
+
+[source,json]
+----
+{
+  "TODO": true
 }
 ----
 
