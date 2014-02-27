@@ -163,7 +163,7 @@ A client SHOULD only submit forms that have understood content-types.
 An input control belongs to a form element. It is represented as an object. It contains no required properties. It MAY include the following properties:
 
 type::
-  Specifies the type of the input data. If the +type+ is not set, a client SHOULD default to type +text+. hyper+json borrows the types specified by the https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Input[HTML 5 input element] specifies, along with the type +select+. Servers MAY choose to add more types as needed. Clients SHOULD only handle input types they understand.
+  Specifies the type of the input data. If the +type+ is not set, a client SHOULD default to type +text+. hyper+json borrows the types specified by the https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Input#attr-type[HTML 5 input element] specifies, along with the type +select+. Servers MAY choose to add more types as needed. Clients SHOULD only handle input types they understand.
 
 value::
   Specifies the current or default value of the input. If +value+ is not set, clients SHOULD default to +null+.
