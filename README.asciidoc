@@ -100,6 +100,34 @@ A hypermedia link is represented as an object with a +href+ property. It MAY hav
 }
 ----
 
+Servers MAY use http://tools.ietf.org/html/rfc6901[JSON Pointers] prefixed with a '\#'. If +href+ starts with '\#' the pointer references a local property:
+
+[source,json]
+----
+{
+  "href": "/users/cameron",
+  "name": "Cameron",
+  "first-name": {
+    "href": "#/name"
+  },
+  "status": {
+    "href": "/users/cameron/statuses#/0/text"
+  },
+  "status-updates": {
+    "href": "/users/cameron/statuses#/count"
+  }
+}
+
+{
+  "href": "/users/cameron/statuses",
+  "collection": [
+    {"text": "I'm happy!"},
+    {"text": "Kinda sad... :("}
+  ],
+  "count": 2
+}
+----
+
 === form
 A hypermedia form is represented as an object with an +action+ property. It SHOULD have a +method+ property that is specific to the protocol i.e. GET, POST, PUT, DELETE, etc for HTTP.
 
