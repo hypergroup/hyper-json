@@ -46,8 +46,9 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 
 
 === root
-The most basic hyper+json resource is an object which SHOULD contain an +href+:
+The most basic hyper+json resource is an object which MUST contain an +href+:
 
+[source,json]
 ----
 {
   "href": "/"
@@ -55,35 +56,171 @@ The most basic hyper+json resource is an object which SHOULD contain an +href+:
 ----
 
 === property
+hyper+json resources can have arbitrary properties mixed with the hypermedia controls:
 
+[source,json]
 ----
-{ }
+{
+  "href": "/users/cameron",
+  "name": "Cameron",
+  "addresses": {
+    "home": {
+      "street": "123 Fake St.",
+      "city": "Nowhere",
+      "country": "USA",
+      "zip": 12345
+    },
+    "work": { }
+  },
+  "likes": [
+    "hot-dogs",
+    "spoons",
+    "toasters"
+  ]
+}
 ----
 
 === link
+A hypermedia link is represented as an object with a +href+ property. It MAY have any other properties as desired:
 
+[source,json]
 ----
-{ }
+{
+  "href": "/users/cameron",
+  "name": "Cameron",
+  "friends": {
+    "href": "/users/cameron/friends",
+    "count": 123
+  },
+  "likes": [
+    {"href": "/likes/hot-dogs"},
+    {"href": "/likes/spoons"},
+    {"href": "/likes/toasters"}
+  ]
+}
 ----
 
 === form
+A hypermedia form is represented as an object with an +action+ property. It SHOULD have a +method+ property that is specific to the protocol i.e. GET, POST, PUT, DELETE, etc for HTTP.
+
+[source,json]
+----
+{
+  "href": "/users/cameron",
+  "name": "Cameron",
+  "update": {
+    "action": "/users/cameron",
+    "method": "PUT",
+    "input": {
+      "name": {
+        "type": "text",
+        "required": true,
+        "value": "Cameron"
+      }
+    }
+  }
+}
+----
+
+The content-body when submitting the form in this example should be:
+
+[source,json]
+----
+{ "name": "Tim" }
+----
+
+Clients SHOULD assume the acceptable type is +application/json+, unless specified in the +enctype+:
+
+[source,json]
+----
+{
+  "href": "/users/cameron",
+  "name": "Cameron",
+  "update": {
+    "action": "/users/cameron",
+    "method": "PUT",
+    "enctype": "application/application/x-www-form-urlencoded",
+    "input": {
+      "name": {
+        "type": "text",
+        "required": true,
+        "value": "Cameron"
+      }
+    }
+  }
+}
+----
+
+with the body:
 
 ----
-{ }
+name=Mike
 ----
+
+A client SHOULD only submit forms that have understood content-types.
+
+=== input
+An input control belongs to a form element. It is represented as an object. It contains no required properties. It MAY include the following properties:
+
+type::
+  Specifies the type of the input data. If the +type+ is not set, a client SHOULD default to type +text+. hyper+json borrows the types specified by the https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Input[HTML 5 input element] specifies, along with the type +select+. Servers MAY choose to add more types as needed. Clients SHOULD only handle input types they understand.
+
+value::
+  Specifies the current or default value of the input. If +value+ is not set, clients SHOULD default to +null+.
+
+Servers MAY choose to add more properties as needed. These properties SHOULD be specified in extensions.
 
 === collection
+By default, hyper+json resources are single documents. To address a collection of documents servers SHOULD use the +collection+ property. Any included properties in the root document are associated to the collection itself.
 
+[source,json]
 ----
-{ }
+{
+  "href": "/users",
+  "collection": [
+    {"href": "/users/cameron"},
+    {"href": "/users/tim"},
+    {"href": "/users/mike"}
+  ],
+  "count": 3
+}
+----
+
+Servers MAY choose to paginate collection. They SHOULD use the +next+ and +prev+ links to provide pagination:
+
+[source,json]
+----
+{
+  "href": "/users?page=1",
+  "collection": [
+    {"href": "/users/cameron"},
+    {"href": "/users/tim"},
+    {"href": "/users/mike"}
+  ],
+  "next": {
+    "href": "/users?page=2"
+  }
+}
+
+{
+  "href": "/users?page=2",
+  "collection": [
+    {"href": "/users/ben"},
+    {"href": "/users/josh"}
+  ],
+  "prev": {
+    "href": "/users?page=1"
+  }
+}
 ----
 
 == Examples
 
+[source,json]
 ----
 {
   "href": "http://example.org/users",
-  "data": [
+  "collection": [
     {"href": "http://example.org/users/1"},
     {"href": "http://example.org/users/2"},
     {"href": "http://example.org/users/3"}
@@ -91,6 +228,7 @@ The most basic hyper+json resource is an object which SHOULD contain an +href+:
 }
 ----
 
+[source,json]
 ----
 {
   "href": "http://example.org/users/1",
