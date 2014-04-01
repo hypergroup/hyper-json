@@ -40,7 +40,7 @@ Prefixing property names with a +_+ marks that property as beta and may not work
 
 == Deprecated
 
-Prefixing property names with a +!+ marks that property as deprecated and will be removed in the future. The value will be "wrapped" in an object with some metadata about the deprecation. This metadata MAY include:
+Prefixing property names with a +!+ marks that property as deprecated and will be removed in the future. The value will be an object with some metadata about the deprecation. The deprecated implementation SHOULD still function properly under the old name. This metadata MAY include:
 
 expiration::
   expiration date of the property, in http://en.wikipedia.org/wiki/ISO_8601[ISO 8601]
@@ -61,12 +61,12 @@ Clients SHOULD work to upgrade their implementations as soon as possible. Server
     "message": "The search property will be renamed in favor of the find property",
     "expiration": "2014-02-13T20:04:53+00:00",
     "preferred": "#/find",
-    "value": {
-      "action": "http://example.org",
-      "input": {
-        "text": {
-          "type": "text"
-        }
+  },
+  "search": {
+    "action": "http://example.org",
+    "input": {
+      "text": {
+        "type": "text"
       }
     }
   },
