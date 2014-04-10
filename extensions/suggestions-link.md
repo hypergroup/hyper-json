@@ -3,9 +3,19 @@ Suggestions link
 
 The purpose of this extension is to provide suggestions for form input values.
 
-Server implementations MAY add `suggestions` to an input element form. The format of the link SHOULD use [URI Templates](http://tools.ietf.org/html/rfc6570). The single variable `query` SHOULD be present in the URI template
+Server implementations MAY add `suggestions` to an input element form. The format of the link SHOULD use [URI Templates](http://tools.ietf.org/html/rfc6570). The template SHOULD use one and only one templated field. The name of the parameter should be conform to the [specification](http://tools.ietf.org/html/rfc6570). For example, if the search parameter was `query` a server would use the following format:
 
-Clients that understand this extension can query the server and ask for suggestions as the user is typing. The user input SHOULD be sent via [URI Template](http://tools.ietf.org/html/rfc6570) using the safe method of the given protocol, i.e. `GET` for HTTP.
+```
+http://example.com/users{?query}
+```
+
+If the server needed additional context about the suggestions more parameters could be added to the uri:
+
+```
+http://example.com/users?type=email&limit=5{&query}
+```
+
+Clients that understand this extension can query the server and ask for suggestions as the user is typing. The user input SHOULD be sent via [URI Template](http://tools.ietf.org/html/rfc6570) using the safe method of the given protocol, i.e. `GET` for HTTP. A client SHOULD use the first field it encounters in the template.
 
 Consider the following example:
 
