@@ -52,6 +52,7 @@ If the value has errors the server SHOULD respond with the following:
 
 ```json
 {
+  "valid": false,
   "invalid": {
     "type": {
       "message": "This server only accepts 'image/jpeg'"
@@ -64,6 +65,7 @@ The server MAY also return warnings:
 
 ```json
 {
+  "valid": true,
   "warnings": {
     "size": {
       "message": "The size of the image is a little low."
