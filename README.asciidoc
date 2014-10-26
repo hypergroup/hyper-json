@@ -5,8 +5,7 @@ hyper+json
 
 == Document Status
 Author::
-  Cameron Bytheway <cameron@hypergroup.io>
-  Tim Shadel
+  Cameron Bytheway <cameron@hypergroup.io>, Tim Shadel
 
 Status::
   *[white red-background]#Working Draft#*
@@ -238,6 +237,30 @@ Servers MAY choose to paginate collection. They SHOULD use the +next+ and +prev+
   ],
   "prev": {
     "href": "/users?page=1"
+  }
+}
+----
+
+
+=== data
+Servers MAY use the +data+ property to wrap values and provide extra metadata about an object. Clients SHOULD be aware that any value MAY be wrapped.
+
+Example usages include specifying a http://www.w3.org/TR/html401/struct/global.html#profiles[profile], specifying a label or deprecating a property.
+
+[source,json]
+----
+{
+  "href": "/users/1",
+  "name": {
+    "profile": "https://schema.org/name",
+    "label": "Name",
+    "data": "Cameron"
+  },
+  "first-name": {
+    "deprecated": true,
+    "data": {
+      "href": "#/name"
+    }
   }
 }
 ----
