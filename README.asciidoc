@@ -21,7 +21,7 @@ Proposed IANA Registrations::
   +application/hyper+json+
 
 == General
-hyper+json is a JSON based hypermedia format designed for simplicty and flexibility.
+hyper+json is a JSON based hypermedia format designed for simplicity and flexibility.
 
 === Design Goals
 hyper+json strives for simplicity:
